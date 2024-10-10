@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c59323f2-1f98-4a4a-94ae-4b78f47b87b6" name="변경" comment="" />
+    <list default="true" id="c59323f2-1f98-4a4a-94ae-4b78f47b87b6" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/controller/TodoRemoveController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoModifyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoReadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoRegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoRemoveController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/dao/ConnectionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/dao/TodoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/domain/TodoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/dto/TodoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/service/TodoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/util/MapperUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/modify.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/read.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/register.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/controller/TodoListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/controller/TodoListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/service/TodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/service/TodoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/modify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/modify.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,38 +88,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.ConnectTests.test1.executor": "Run",
-    "Gradle.ConnectTests.testConnection.executor": "Run",
-    "Gradle.ConnectTests.testHikariCP.executor": "Run",
-    "Gradle.TodoDAOTests.testDelete.executor": "Run",
-    "Gradle.TodoDAOTests.testInsert.executor": "Run",
-    "Gradle.TodoDAOTests.testSelectAll.executor": "Run",
-    "Gradle.TodoDAOTests.testSelectOne.executor": "Run",
-    "Gradle.TodoDAOTests.testTime.executor": "Run",
-    "Gradle.TodoDAOTests.testUpdate.executor": "Run",
-    "Gradle.TodoServiceTests.testRegister.executor": "Run",
-    "Gradle.jdbcex 빌드.executor": "Run",
-    "Gradle.소스 다운로드.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Tomcat 서버.Tomcat 9.0.95.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/it/Desktop/0812ReactAndSpring/web/JavaWeb0812/jdbcex/src/main/webapp/WEB-INF/todo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.ConnectTests.test1.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConnectTests.testConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConnectTests.testHikariCP.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoDAOTests.testDelete.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoDAOTests.testInsert.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoDAOTests.testSelectAll.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoDAOTests.testSelectOne.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoDAOTests.testTime.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoDAOTests.testUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TodoServiceTests.testRegister.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.jdbcex 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat 서버.Tomcat 9.0.95.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/it/Desktop/0812ReactAndSpring/web/JavaWeb0812/jdbcex/src/main/webapp/WEB-INF/todo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\it\Desktop\0812ReactAndSpring\web\JavaWeb0812\jdbcex\src\main\webapp\WEB-INF\todo" />
@@ -345,7 +368,8 @@
       <option name="presentableId" value="Default" />
       <updated>1728018994083</updated>
       <workItem from="1728018995197" duration="12383000" />
-      <workItem from="1728345814186" duration="22207000" />
+      <workItem from="1728345814186" duration="22899000" />
+      <workItem from="1728518375709" duration="4465000" />
     </task>
     <servers />
   </component>
