@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Todo List</h1>
+    <h3>${loginInfo.mname}님 반갑습니다.</h3>
     <ul>
         <c:forEach items="${dtoList}" var="dto">
             <li>
@@ -17,5 +18,23 @@
             </li>
         </c:forEach>
     </ul>
+    <a href="/todo/register">REGISTER</a>
+    <form action="/logout" method="post">
+        <button>LOGOUT</button>
+    </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
