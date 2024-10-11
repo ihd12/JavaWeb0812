@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+<!-- 스프링이 관리하는 객체는 Bean이라 말하며 xml 관리 방식을 설정한다. -->
+<!--    <bean class="org.zerock.springex.sample.SampleDAO"></bean>-->
+<!--    <bean class="org.zerock.springex.sample.SampleService"></bean>-->
+<!--  org.zerock.springex.sample안의 모든 클래스를 Bean으로 설정  -->
+<!-- @Controller : 컨트롤러에 설정하는 어노테이션
+   @Service : 서비스
+   @Repository : DAO
+   @Component : VO-->
+    <context:component-scan base-package="org.zerock.springex.sample" />
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mariadb://localhost:3307/webdb" />
+        <property name="username" value="webuser" />
+        <property name="password" value="webuser" />
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="cachePrepStmts">true</prop>
+                <prop key="prepStmtCacheSize">250</prop>
+                <prop key="prepStmtCacheSqlLimit">2048</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig" />
+    </bean>
+<!-- sqlSessionFactory : mybatis를 사용하기 위한 설정   -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+<!--    mapperLocations : xml 맵퍼의 위치를 설정    -->
+<!--    ** : 모든 하위 경로를 의미 경로 이름이 어떤것이든 상관 없음    -->
+<!--    *.xml : 확장자는 xml이어야하고 파일이른 어떤것이든 상관 없음    -->
+        <property name="mapperLocations" value="classpath:/mappers/**/*.xml" />
+    </bean>
+    <mybatis:scan base-package="org.zerock.springex.mapper"></mybatis:scan>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+

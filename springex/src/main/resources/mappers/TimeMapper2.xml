@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mybatis 맵퍼 자동 완성 설정-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 인터페이스 맵퍼와 연결하는 설정-->
+<mapper namespace="org.zerock.springex.mapper.TimeMapper2">
+<!-- SQL을 실행하기 위한 id는 인터페이스 맵퍼의 메서드 이름과 동일해야함.   -->
+<!--    SELECT문의 경우 반환 타입을 설정하는 resultType, resultMap 둘 중 하나를 반드시 설정해야함 -->
+    <select id="getNow" resultType="string">
+        SELECT now()
+    </select>
+</mapper>

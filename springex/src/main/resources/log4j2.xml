@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="INFO" >
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d{hh:mm:dd} %5p [%c] %m%n" />
+        </Console>
+    </Appenders>
+    <loggers>
+        <!--        level의 종류-->
+        <!--        TRACE->DEBUG->INFO->WARN->ERROR->FATAL-->
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
+        <logger name="org.zerock" level="INFO" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
+        <root level="INFO">
+            <AppenderRef ref = "Console" />
+        </root>
+    </loggers>
+</Configuration>
