@@ -14,6 +14,10 @@
         <logger name="org.zerock" level="INFO" additivity="false">
             <appender-ref ref="Console" />
         </logger>
+<!--        데이테베이스에서 실행되는 SQL 쿼리를 보기위한 설정, TRACE의 경우 가장 위험도가 낮기 때문에 모든 실행 로그가 출력된다-->
+        <logger name="org.zerock.springex.mapper" level="TRACE" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
         <root level="INFO">
             <AppenderRef ref = "Console" />
         </root>

@@ -47,15 +47,18 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
     testCompileOnly 'org.projectlombok:lombok:1.18.34'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
-
+    // JSTL 설정
+    implementation group: 'jstl', name: 'jstl', version: '1.2'
     // ModelMapper 설정 : VO <-> DTO 변환하는 라이브러리
-//    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.0.0'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.0.0'
+    // DTO검증을 위한 Validate 라이브러리
+    implementation group: 'org.hibernate', name:'hibernate-validator', version:'6.2.1.Final'
+
     //log4j2 : 로그 출력 라이브러리 설정
     implementation group: 'org.apache.logging.log4j', name:'log4j-core', version:'2.17.2'
     implementation group: 'org.apache.logging.log4j', name:'log4j-api', version:'2.17.2'
     implementation group: 'org.apache.logging.log4j', name:'log4j-slf4j-impl', version:'2.17.2'
-    // JSTL 설정
-    implementation group: 'jstl', name: 'jstl', version: '1.2'
+
 }
 
 test {
