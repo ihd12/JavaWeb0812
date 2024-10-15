@@ -40,7 +40,7 @@
                         Featured
                     </div>
                     <div class="card-body">
-                        <form action="/todo/register" method="post" enctype="multipart/form-data">
+                        <form action="/todo/register" method="post">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Title</span>
                                 <input type="text" name="title" class="form-control" placeholder="Title">
@@ -70,6 +70,7 @@
                             <c:forEach items="${errors}" var="error">
                             serverValidResult['${error.getField()}'] = '${error.defaultMessage}'
                             </c:forEach>
+                            console.log(serverValidResult.length)
                             // alert('title : '+serverValidResult['title']
                             //     +'\ndueDate : '+serverValidResult['dueDate']
                             //     +'\nwriter : '+serverValidResult['writer'])

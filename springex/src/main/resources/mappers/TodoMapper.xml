@@ -10,4 +10,18 @@
         INSERT INTO tbl_todo(title,dueDate,writer)
         VALUES(#{title}, #{dueDate}, #{writer})
     </insert>
+    <select id="selectAll" resultType="org.zerock.springex.domain.TodoVO">
+        SELECT tno, title, dueDate, finished, writer FROM tbl_todo ORDER BY tno DESC
+    </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
