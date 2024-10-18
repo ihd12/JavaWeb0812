@@ -10,9 +10,62 @@
         INSERT INTO tbl_todo(title,dueDate,writer)
         VALUES(#{title}, #{dueDate}, #{writer})
     </insert>
+<!--전체 데이터를 취득하는 SELECT문-->
     <select id="selectAll" resultType="org.zerock.springex.domain.TodoVO">
         SELECT tno, title, dueDate, finished, writer FROM tbl_todo ORDER BY tno DESC
     </select>
+<!--LIMIT를 사용해 데이터를 취득하는 SELECT문    -->
+<!--Mybatis는 기본적으로 Getter,Setter를 통해서 동작하기 때문에 #{skip}은 getSkip()메서드의 실행결과를 반환한다    -->
+    <select id="selectList" resultType="org.zerock.springex.domain.TodoVO">
+        SELECT tno,title,dueDate,finished,writer
+        FROM tbl_todo
+        <include refid="search"></include>
+        ORDER BY tno DESC LIMIT #{skip},#{size}
+    </select>
+    <select id="getCount" resultType="int">
+        SELECT COUNT(tno) FROM tbl_todo
+        <include refid="search"></include>
+    </select>
+<!-- 특정 sql부분만 따로 저장하여 여러 sql문의 조건식으로 사용   -->
+    <sql id="search">
+        <where>
+            <if test="types != null and types.length > 0">
+                --          검색을의 저건을 설정 : types에 데이터가 없으면 WHERE절을 추가 하지않는 if문
+                --              types에 있는 데이터 만큼 반복 실행, collection=리스트나 배열 데이터, item=하나의 데이터
+                --              open=반복문이 시작될때 들어갈 내용, close=반복문이 끝날때, separator=반복과 반복의 사이에 넣어주는 문구
+                <foreach collection="types" item="type" open="(" close=")" separator=" OR ">
+                    <if test="type == 't'.toString()">
+                        title LIKE CONCAT('%',#{keyword},'%')
+                    </if>
+                    <if test="type == 'w'.toString()">
+                        writer LIKE CONCAT('%',#{keyword},'%')
+                    </if>
+                </foreach>
+            </if>
+            <if test="finished">
+                <trim prefix="and">
+                    finished = 1
+                </trim>
+            </if>
+            <if test="from != null and to != null">
+                <trim prefix="and">
+                    dueDate BETWEEN #{from} AND #{to}
+                </trim>
+            </if>
+        </where>
+    </sql>
+    <select id="selectOne" resultType="org.zerock.springex.domain.TodoVO">
+        SELECT tno, title, dueDate, finished, writer FROM tbl_todo WHERE tno = #{tno}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM tbl_todo WHERE tno = #{tno}
+    </delete>
+    <update id="update">
+        UPDATE tbl_todo
+        SET title=#{title}, dueDate=#{dueDate}, finished=#{finished}
+        WHERE tno=#{tno}
+    </update>
 </mapper>
 
 

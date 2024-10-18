@@ -5,28 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c59323f2-1f98-4a4a-94ae-4b78f47b87b6" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/controller/TodoRemoveController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoListController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoModifyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoReadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoRegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/controller/TodoRemoveController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/dao/ConnectionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/dao/TodoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/domain/TodoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/dto/TodoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/service/TodoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/java/org/zerock/w2/util/MapperUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/modify.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/read.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/todo/register.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../w2/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/controller/formatter/CheckboxFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/dto/PageRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/dto/PageResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springex/src/main/webapp/WEB-INF/views/todo/modify.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springex/src/main/webapp/WEB-INF/views/todo/read.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/filter/UTF8Filter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/controller/NoticeAddController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/controller/NoticeListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/controller/NoticeReadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/dao/NoticeDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/domain/NoticeVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/dto/NoticeDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/notice/service/NoticeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/util/ConnectionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/java/org/zerock/tourist/util/MapperUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/WEB-INF/notice/notice_add.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/WEB-INF/notice/notice_list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/WEB-INF/notice/notice_view.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/join.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/mypage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/notice_add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/notice_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/notice_view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/program.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tourist/src/main/webapp/resources/sitemap.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/controller/TodoListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/controller/TodoListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/service/TodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zerock/jdbcex/service/TodoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/modify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/modify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/controller/TodoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/controller/TodoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/mapper/TodoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/mapper/TodoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/service/TodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/service/TodoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/service/TodoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/java/org/zerock/springex/service/TodoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/resources/mappers/TodoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/resources/mappers/TodoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/webapp/WEB-INF/servlet-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/webapp/WEB-INF/servlet-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/main/webapp/WEB-INF/views/todo/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/main/webapp/WEB-INF/views/todo/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springex/src/test/java/org/zerock/springex/mapper/TodoMapperTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springex/src/test/java/org/zerock/springex/mapper/TodoMapperTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -370,6 +384,9 @@
       <workItem from="1728018995197" duration="12383000" />
       <workItem from="1728345814186" duration="22899000" />
       <workItem from="1728518375709" duration="4465000" />
+      <workItem from="1729141134579" duration="7238000" />
+      <workItem from="1729210130863" duration="283000" />
+      <workItem from="1729211896823" duration="4392000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,8 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.zerock.springex.domain.TodoVO;
+import org.zerock.springex.dto.PageRequestDTO;
+import org.zerock.springex.dto.PageResponseDTO;
 import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.mapper.TodoMapper;
 
@@ -34,6 +36,41 @@ public class TodoServiceImpl  implements TodoService{
         .map(vo -> modelMapper.map(vo,TodoDTO.class))
         .collect(Collectors.toList());
     return dtoList;
+  }
+
+  @Override
+  public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+    // Mapper를 이용하여 tbl_todo 테이블의 페이징 데이터 취득
+    List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+    // TodoVO로 되어있는 List를 DTO List로 변환
+    List<TodoDTO> dtoList = voList.stream()
+        .map(vo -> modelMapper.map(vo, TodoDTO.class))
+        .collect(Collectors.toList());
+    // 화면에 돌려줄 데이터인 PageResponseDTO를 설정
+    PageResponseDTO<TodoDTO> pageResponseDTO = PageResponseDTO.<TodoDTO>withAll()
+        .pageRequestDTO(pageRequestDTO)
+        .dtoList(dtoList)
+        .total(todoMapper.getCount(pageRequestDTO))
+        .build();
+    return pageResponseDTO;
+  }
+
+  @Override
+  public TodoDTO getOne(Long tno) {
+    TodoVO todoVO = todoMapper.selectOne(tno);
+    TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
+    return todoDTO;
+  }
+
+  @Override
+  public void remove(Long tno) {
+    todoMapper.delete(tno);
+  }
+
+  @Override
+  public void modify(TodoDTO todoDTO) {
+    TodoVO todoVO = modelMapper.map(todoDTO,TodoVO.class);
+    todoMapper.update(todoVO);
   }
 
 }
