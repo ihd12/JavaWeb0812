@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title> 공지사항 | 고객센터 | 투어리스트인투어 </title>
+    <title> 박물관 미션 투어 당첨자 발표 | 공지사항 | 고객센터 | 투어리스트인투어 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,7 +48,7 @@
                         <li><a href="javascript:;" class="openAll2">고객센터</a>
                             <div class="gnb_depth gnb_depth2_2">
                                 <ul class="submenu_list">
-                                    <li><a href="/notice/list">공지사항</a></li>
+                                    <li><a href="/noticelist">공지사항</a></li>
                                     <li><a href="javascript:;">문의하기</a></li>
                                 </ul>
                             </div>
@@ -93,55 +93,48 @@
 
         <!-- bodytext_area -->
         <div class="bodytext_area box_inner">
-            <form action="#" class="minisrch_form">
-                <fieldset>
-                    <legend>검색</legend>
-                    <input type="text" class="tbox" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
-                    <a href="javascript:;" class="btn_srch">검색</a>
-                    <a href="/notice/add" class="btn_srch">글작성</a>
-                </fieldset>
-            </form>
-            <table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
-                <caption class="hdd">공지사항  목록</caption>
-                <thead>
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">조회수</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${noticeList}" var="notice">
-                <tr>
-                    <td>${notice.tno}</td>
-                    <td class="tit_notice"><a href="/notice/read?tno=${notice.tno}">${notice.title}</a> </td>
-                    <td>${notice.view}</td>
-                    <td>${notice.createDate}</td>
-                </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <!-- pagination -->
-            <div class="pagination">
-                <a href="javascript:;" class="firstpage  pbtn"><img src="/resources/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
-                <a href="javascript:;" class="prevpage  pbtn"><img src="/resources/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
-                <a href="javascript:;"><span class="pagenum currentpage">1</span></a>
-                <a href="javascript:;"><span class="pagenum">2</span></a>
-                <a href="javascript:;"><span class="pagenum">3</span></a>
-                <a href="javascript:;"><span class="pagenum">4</span></a>
-                <a href="javascript:;"><span class="pagenum">5</span></a>
-                <a href="javascript:;" class="nextpage  pbtn"><img src="/resources/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
-                <a href="javascript:;" class="lastpage  pbtn"><img src="/resources/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
-            </div>
-            <!-- //pagination -->
+            <form action="/notice/modify" method="POST">
+                <input type="hidden" name="tno" value="${dto.tno}">
+                <ul class="bbsview_list">
+                    <li class="bbs_title"><input type="text" name="title" size="110" value="${dto.title}" ></li>
+                    <li class="bbs_hit">작성일 : <span>${dto.createDate}</span></li>
+                    <li class="bbs_date">조회수 : <span>${dto.view}</span></li>
+                    <li class="bbs_content">
+                        <div class="editer_content">
+                            <textarea name="content" cols="110" rows="20" >${dto.content}</textarea>
+                        </div>
+                    </li>
+                </ul>
+                <p class="btn_line txt_right">
+                    <input type="submit" value="수정" class="btn_srch">
+                    <a class="btn_srch btn-remove">삭제</a>
+                    <a href="/notice/list" class="btn_bbs">목록</a>
+                </p>
 
+            </form>
+            <script>
+                const formObj = document.querySelector("form");
+                document.querySelector(".btn-remove").addEventListener("click", function (e){
+                    e.preventDefault();
+                    // 태그의 기본적인 실행하지 않도록 하는 함수, a태그
+                    e.stopPropagation();
+                    // 자식태그를 클릭하면 부모태그에 존재하는 스크립트나 기능이 실행되는 것을 막아주는 함수
+                    formObj.action = `/notice/remove`;
+                    // form태그의 action과 method의 설정을 remove에 맞게 변경하는 코드
+                    formObj.method = "post";
+                    formObj.submit();
+                    // form태그를 실행하는 함수
+                }, false)
+            </script>
+            <ul class="near_list mt20">
+                <li><h4 class="prev">다음글</h4><a href="javascript:;">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a></li>
+                <li><h4 class="next">이전글</h4><a href="javascript:;">이번 여름 휴가 제주 갈까? 미션 투어 (여행경비 50만원 지원)</a></li>
+            </ul>
         </div>
         <!-- //bodytext_area -->
 
     </div>
     <!-- //container -->
-
     <footer>
         <div class="foot_area box_inner">
             <ul class="foot_list clear">

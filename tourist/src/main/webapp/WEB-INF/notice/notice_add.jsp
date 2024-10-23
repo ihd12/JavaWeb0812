@@ -93,9 +93,9 @@
 
 		<!-- bodytext_area -->
 		<div class="bodytext_area box_inner">	
-			<form action="" method="POST">		
+			<form action="/notice/add" method="POST">
 			<ul class="bbsview_list">
-					<li class="bbs_title">제목 : <input type="text" name="title" size="100" placeholder="제목을 입력해주세요."></li>
+					<li class="bbs_title">제목 : <input type="text" name="title" size="110" placeholder="제목을 입력해주세요."></li>
 					<li class="bbs_content">
 						<div class="editer_content">
 							<textarea name="content" cols="110" rows="20" placeholder="내용을 입력해주세요."></textarea>

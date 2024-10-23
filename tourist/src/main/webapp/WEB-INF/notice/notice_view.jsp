@@ -99,20 +99,19 @@
 				<li class="bbs_date">조회수 : <span>${dto.view}</span></li>
 				<li class="bbs_content">
 					<div class="editer_content">
-					    ${dto.content}
+					   ${dto.content}
                     </div>
 				</li>
 			</ul>
-			<div class="btn_line txt_right" style="margin: 2px;">
-				<a href="/notice/modify" class="btn_bbs">수정</a>
-				<a class="btn_bbs removeBtn">삭제</a>
+			<p class="btn_line txt_right">
 				<a href="/notice/list" class="btn_bbs">목록</a>
-			</div>
+				<a href="/notice/modify?tno=${dto.tno}" class="btn_bbs">수정</a>
+			</p>
 			<ul class="near_list mt20">
 				<li><h4 class="prev">다음글</h4><a href="javascript:;">추석 연휴 티켓/투어 배송 및 직접 수령 안내</a></li>		
 				<li><h4 class="next">이전글</h4><a href="javascript:;">이번 여름 휴가 제주 갈까? 미션 투어 (여행경비 50만원 지원)</a></li>
 			</ul>
-		</div>
+		</div>Table
 		<!-- //bodytext_area -->
 
 	</div>
@@ -151,16 +150,6 @@
 	</ul>
 	<p class="to_top"><a href="#layout0" class="s_point">TOP</a></p>
 </div>
-<script>
-	document.querySelector(".removeBtn").addEventListener("click", (e)=>{
-		e.preventDefault();
-		e.stopPropagation();
-		let formObj = document.createElement("form");
-		formObj.innerHTML = `<input type="hidden" name="tno" value="${dto.tno}"`;
-		formObj.action="/notice/remove";
-		formObj.method="post";
-		formObj.submit();
-	})
-</script>
+
 </body>
 </html>

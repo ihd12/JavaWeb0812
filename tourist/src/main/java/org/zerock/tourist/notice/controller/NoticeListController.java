@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/notice/list")
+@WebServlet("/notice/oldlist")
 public class NoticeListController extends HttpServlet {
   private NoticeService service = NoticeService.INSTANCE;
   @Override
