@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,8 +33,15 @@
             <!-- header_cont -->
             <div class="header_cont">
                 <ul class="util clear">
-                    <li><a href="login.html">로그인</a></li>
-                    <li><a href="join.html">회원가입</a></li>
+                    <c:if test="${loginInfo==null}">
+                        <li><a href="/member/login">로그인</a></li>
+                        <li><a href=/member/join">회원가입</a></li>
+                    </c:if>
+                    <c:if test="${loginInfo!=null}">
+                        <li><a href="/member/logout">로그아웃</a></li>
+                        <li><a href=/member/mypage">회원수정</a></li>
+                    </c:if>
+
                 </ul>
                 <nav>
                     <ul class="gnb clear">
@@ -57,7 +65,7 @@
                         <li><a href="javascript:;" class="openAll3">상품투어</a>
                             <div class="gnb_depth gnb_depth2_3">
                                 <ul class="submenu_list">
-                                    <li><a href="program.html">프로그램 소개</a></li>
+                                    <li><a href="/program">프로그램 소개</a></li>
                                     <li><a href="javascript:;">여행자료</a></li>
                                 </ul>
                             </div>
