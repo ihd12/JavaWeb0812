@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="INFO" >
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d{hh:mm:dd} %5p [%c] %m%n" />
+        </Console>
+    </Appenders>
+    <loggers>
+        <!--        level의 종류-->
+        <!--        TRACE->DEBUG->INFO->WARN->ERROR->FATAL-->
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
+        <logger name="org.zerock" level="INFO" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
+<!--        데이테베이스에서 실행되는 SQL 쿼리를 보기위한 설정, TRACE의 경우 가장 위험도가 낮기 때문에 모든 실행 로그가 출력된다-->
+        <logger name="org.zerock.webmarket.notice.mapper" level="TRACE" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
+        <root level="INFO">
+            <AppenderRef ref = "Console" />
+        </root>
+    </loggers>
+</Configuration>
