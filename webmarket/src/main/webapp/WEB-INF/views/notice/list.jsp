@@ -33,11 +33,11 @@
                 <ul class="util clear">
                     <c:if test="${loginInfo==null}">
                         <li><a href="/member/login">로그인</a></li>
-                        <li><a href=/member/join">회원가입</a></li>
+                        <li><a href="/member/join">회원가입</a></li>
                     </c:if>
                     <c:if test="${loginInfo!=null}">
                         <li><a href="/member/logout">로그아웃</a></li>
-                        <li><a href=/member/mypage">회원수정</a></li>
+                        <li><a href="/member/mypage">회원수정</a></li>
                     </c:if>
                 </ul>
                 <nav>

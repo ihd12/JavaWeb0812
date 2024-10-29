@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.webmarket.member.mapper.MemberMapper">
+    <insert id="insertMember">
+        INSERT INTO member(member_id,member_pw,name,phone,email1,email2,gender,agree)
+        VALUES (#{member_id},#{member_pw},#{name},#{phone},#{email1},#{email2},#{gender},#{agree})
+    </insert>
+    <select id="login" resultType="org.zerock.webmarket.member.domain.MemberVO">
+        SELECT * FROM member WHERE member_id=#{member_id} AND member_pw=#{member_pw}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,9 +31,14 @@
 			<!-- header_cont -->
 			<div class="header_cont">
 				<ul class="util clear">
-					<li><a href="/member/login">로그인</a></li>
-					<li><a href="/member/logout">로그아웃</a></li>
-					<li><a href="javascript:;">회원가입</a></li>
+					<c:if test="${loginInfo==null}">
+						<li><a href="/member/login">로그인</a></li>
+						<li><a href="/member/join">회원가입</a></li>
+					</c:if>
+					<c:if test="${loginInfo!=null}">
+						<li><a href="/member/logout">로그아웃</a></li>
+						<li><a href="/member/mypage">회원수정</a></li>
+					</c:if>
 				</ul>		
 				<nav>
 				<ul class="gnb clear">

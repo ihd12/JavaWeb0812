@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.webmarket.program.mapper.ProgramMapper">
+    <select id="selectProgramList" resultType="org.zerock.webmarket.program.domain.ProgramVO">
+        SELECT * FROM program
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
