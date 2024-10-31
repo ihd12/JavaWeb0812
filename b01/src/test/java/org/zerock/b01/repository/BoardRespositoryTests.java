@@ -76,6 +76,36 @@ public class BoardRespositoryTests {
     List<Board> todoList = result.getContent();
     todoList.forEach(board -> log.info(board));
   }
+  @Test
+  public void testQueryMethod(){
+    Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
+    Page<Board> result = boardRepository.findByTitleContainingOrderByBnoDesc("1",pageable);
+    List<Board> todoList = result.getContent();
+    todoList.forEach(board -> log.info(board));
+  }
+  @Test
+  public void testQuery(){
+    Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
+    Page<Board> result = boardRepository.findKeyword("1",pageable);
+    List<Board> todoList = result.getContent();
+    todoList.forEach(board -> log.info(board));
+  }
+  @Test
+  public void testGetTime(){
+    log.info(boardRepository.getTime());
+  }
+  @Test
+  public void testSearchAll(){
+    String [] types = {"t","c"};
+    String keyword = "1";
+    Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
+    Page<Board> result = boardRepository.searchAll(types,keyword,pageable);
+    log.info(result.getTotalElements());
+    log.info(result.getSize());
+    log.info(result.getNumber());
+    log.info(result.hasPrevious()+": " + result.hasNext());
+    result.getContent().forEach(board -> log.info(board));
+  }
 }
 
 
