@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<h4>[[${list}]]</h4>-->
+    <hr/>
+<!--/* <h4 th:text="${list}"></h4> */-->
+<!-- th:with 변수를 선언하는 thymeleaf문법-->
+<!-- th:with설정한 태그 밖에서는 사용할 수 없습니다. 지역변수와 유사 -->
+<div th:with="num1 = ${10}, num2=${20}">
+    <h4 th:text="${num1 + num2}"></h4>
+</div>
+<ul>
+    <li th:each="str:${list}" th:text="${str}"></li>
+</ul>
+<ul>
+<!-- <th:block> 가상의 태그를 만들어 thymeleaf를 설정하도록 하는 태그   -->
+    <th:block th:each="str:${list}">
+        <li>[[${str}]]</li>
+    </th:block>
+</ul>
+<ul>
+    <li th:each="str,status:${list}">
+        [[${status.index}]],
+        [[${status.count}]],
+        [[${status.size}]],
+        [[${status.first}]],
+        [[${status.last}]],
+        [[${status.odd}]],
+        [[${status.even}]] -- [[${str}]]
+    </li>
+</ul>
+<ul>
+    <li th:each="str,status:${list}" >
+        <span th:if="${status.odd}">ODD -- [[${str}]]</span>
+        <span th:unless="${status.odd}">EVEN -- [[${str}]]</span>
+    </li>
+</ul>
+<ul>
+    <li th:each="str,status:${list}" >
+        <span th:text="${status.odd}?'ODD -- '+${str} : 'EVEN -- '+${str} "></span>
+    </li>
+</ul>
+<ul>
+    <li th:each="str,status:${list}" >
+        <th:block th:switch="${status.index%3}">
+            <span th:case="0">0</span>
+            <span th:case="1">1</span>
+            <span th:case="2">2</span>
+        </th:block>
+    </li>
+</ul>
+<a th:href="@{/hello}">Go to /hello</a>
+<a href="/hello">Go to /hello</a>
+<br>
+<a th:href="@{/hello(name='한글 처리',age=16)}">타임리프 파라미터 처리</a>
+<a href="/hello?name=한글 처리&age=16">일반 HTML 파라미터 처리</a>
+<a th:href="@{/hello(types=${ {'AA','BB','CC'} },age=16)}">파라미터 배열 처리</a>
+</body>
+</html>
