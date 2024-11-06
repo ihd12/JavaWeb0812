@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}">
+
+    <div id="container" layout:fragment="content">
+        <!-- location_area -->
+        <div class="location_area customer">
+            <div class="box_inner">
+                <h2 class="tit_page">TOURIST <span class="in">in</span> TOUR</h2>
+                <p class="location">고객센터 <span class="path">/</span> 공지사항</p>
+                <ul class="page_menu clear">
+                    <li><a href="#" class="on">공지사항</a></li>
+                    <li><a href="#">문의하기</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- //location_area -->
+
+        <!-- bodytext_area -->
+        <div class="bodytext_area box_inner">
+            <form action="/notice/list" class="minisrch_form">
+                <fieldset>
+                    <legend>검색</legend>
+                    <input type="text" class="tbox" name="keyword" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
+                    <button class="btn_srch">검색</button>
+                    <a href="/notice/add" class="btn_srch">글작성</a>
+                </fieldset>
+            </form>
+            <table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
+                <caption class="hdd">공지사항  목록</caption>
+
+                <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">조회수</th>
+                    <th scope="col">작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="notice:${pageResponseDTO.dtoList}">
+                    <td>[[${notice.tno}]]</td>
+                    <td class="tit_notice"><a th:href="@{/notice/read(tno=${notice.tno})}">[[${notice.title}]]</a> </td>
+                    <td>[[${notice.view}]]</td>
+<!--                    <td>[[${notice.regDate}]]</td>-->
+                    <td>[[${#temporals.format(notice.regDate,'yyyy-MM-dd HH:mm:ss')}]]</td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- pagination -->
+            <div class="pagination">
+                <a href="javascript:;" class="firstpage  pbtn" data-num="1"><img data-num="1" src="/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
+                <a th:if="${pageResponseDTO.prev}" href="javascript:;" class="prevpage pbtn" th:data-num="${pageResponseDTO.start -1}"><img th:data-num="${pageResponseDTO.start -1}" src="/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
+                <th:block th:each="num:${#numbers.sequence(pageResponseDTO.start,pageResponseDTO.end)}">
+                    <a href="javascript:;">
+                        <span th:class="${pageResponseDTO.page==num} ? ' currentpage':'pagenum'" th:data-num="${num}">
+                        [[${num}]]
+                        </span>
+                    </a>
+                </th:block>
+                <a th:if="${pageResponseDTO.next}" href="javascript:;" class="nextpage pbtn" th:data-num="${pageResponseDTO.end +1}"><img th:data-num="${pageResponseDTO.end +1}" src="/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
+                <a href="javascript:;" class="lastpage pbtn" th:data-num="${pageResponseDTO.last}"><img th:data-num="${pageResponseDTO.last}" src="/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
+            </div>
+            <!-- //pagination -->
+
+        </div>
+        <!-- //bodytext_area -->
+
+    </div>
+    <!-- //container -->
+
+<script layout:fragment="script" th:inline="javascript">
+    document.querySelector(".pagination").addEventListener("click", (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        const target = e.target;
+        if(target.tagName !== 'IMG' && target.tagName !== 'A' && target.tagName !== 'SPAN'){
+            return;
+        }
+        const num = target.getAttribute("data-num");
+        const formObj = document.querySelector("form");
+        formObj.innerHTML += `<input type="hidden" name="page" value="${num}">`;
+        // console.log(formObj.innerHTML);
+        formObj.submit();
+    },false)
+</script>
+</html>

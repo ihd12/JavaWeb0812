@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.springex.dto.MemberDTO;
 import org.zerock.springex.dto.PageRequestDTO;
 import org.zerock.springex.dto.PageResponseDTO;
 import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.service.TodoService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -28,15 +30,21 @@ public class TodoController {
 
   // 메서드의 uri 경로 설정, 메서드 설정을 생략하면 GET메서드로 실행
   @RequestMapping("/list")
-  public void list(Model model,
+  public String list(HttpSession session, Model model,
                    @Valid PageRequestDTO pageRequestDTO,
                    BindingResult bindingResult){
     if(bindingResult.hasErrors()){
       pageRequestDTO = PageRequestDTO.builder().build();
     }
+    MemberDTO loginInfo = (MemberDTO)session.getAttribute("loginInfo");
+    if(loginInfo == null){
+      return "redirect:/member/login";
+    }
+    pageRequestDTO.setId(loginInfo.getId());
     log.info("todo list...................");
     PageResponseDTO<TodoDTO> responseDTO = todoService.getList(pageRequestDTO);
     model.addAttribute("responseDTO", responseDTO);
+    return "todo/list";
   }
   @RequestMapping(value="/register", method=RequestMethod.GET)
   public void register(){

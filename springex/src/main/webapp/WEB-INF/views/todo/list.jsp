@@ -10,33 +10,12 @@
 <div class="container-fluid">
     <div class="row">
         <%--        <h1>Header</h1>--%>
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                <a class="nav-link" href="#">Link</a>
-                                <a class="nav-link" href="#">Features</a>
-                                <a class="nav-link" href="#">Pricing</a>
-                                <a class="nav-link" disabled>Disabled</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-
-            </div>
-        </div>
+        <%@ include file="/WEB-INF/views/layout/header.jsp"%>
         <div class="row content">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Search</h5>
+                        <h5 class="card-title">검색</h5>
                         <form action="/todo/list" method="get">
                             <input type="hidden" name="size" value="${pageRequestDTO.size}">
                             <div class="mb-3">
@@ -53,8 +32,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <div class="float-end">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                    <button class="btn btn-info clearBtn" type="reset">Clear</button>
+                                    <button class="btn btn-primary" type="submit">검색</button>
+                                    <button class="btn btn-info clearBtn" type="reset">초기화</button>
                                 </div>
                             </div>
                         </form>
@@ -71,15 +50,15 @@
                         Featured
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">할 일 목록</h5>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Tno</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Writer</th>
-                                <th scope="col">DueDate</th>
-                                <th scope="col">Finished</th>
+                                <th scope="col">번호</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">작성자</th>
+                                <th scope="col">기한</th>
+                                <th scope="col">완료여부</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -93,7 +72,7 @@
                                     </td>
                                     <td><c:out value="${dto.writer}"/></td>
                                     <td><c:out value="${dto.dueDate}"/></td>
-                                    <td><c:out value="${dto.finished}"/></td>
+                                    <td><c:out value="${dto.finished?'O':'X'}"/></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -150,14 +129,7 @@
     <div class="row content">
         <h1>Content</h1>
     </div>
-    <div class="row footer">
-        <%--        <h1>Footer</h1>--%>
-        <div class="row fixed-bottom" style="z-index:-100">
-            <footer class="py-1 my-1">
-                <p class="text-center text-muted">Footer</p>
-            </footer>
-        </div>
-    </div>
+    <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

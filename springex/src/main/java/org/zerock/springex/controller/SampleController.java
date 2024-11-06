@@ -18,6 +18,10 @@ public class SampleController {
   // GetMapping(경로) : 경로에 맞는 get요청을 처리하는 메서드
   // Controller에서 void를 사용하는 메서드의 특징
   // GetMapping(), PostMapping()에 있는 경로로 페이지를 찾아서 실행합니다
+  @GetMapping("/")
+  public String index() {
+    return "redirect:/todo/list";
+  }
   @GetMapping({"/hello","/hello2"})
   public void hello(){
     log.info("hello get method..................");

@@ -52,6 +52,9 @@
                     dueDate BETWEEN #{from} AND #{to}
                 </trim>
             </if>
+            <trim prefix="and">
+                writer = #{id}
+            </trim>
         </where>
     </sql>
     <select id="selectOne" resultType="org.zerock.springex.domain.TodoVO">

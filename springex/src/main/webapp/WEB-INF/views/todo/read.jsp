@@ -10,28 +10,7 @@
 <div class="container-fluid">
     <div class="row">
         <%--        <h1>Header</h1>--%>
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                <a class="nav-link" href="#">Link</a>
-                                <a class="nav-link" href="#">Features</a>
-                                <a class="nav-link" href="#">Pricing</a>
-                                <a class="nav-link" disabled>Disabled</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-
-            </div>
-        </div>
+        <%@ include file="/WEB-INF/views/layout/header.jsp"%>
         <div class="row content">
             <%--        <h1>Content</h1>--%>
             <div class="col">
@@ -90,14 +69,7 @@
     <div class="row content">
         <h1>Content</h1>
     </div>
-    <div class="row footer">
-        <%--        <h1>Footer</h1>--%>
-        <div class="row fixed-bottom" style="z-index:-100">
-            <footer class="py-1 my-1">
-                <p class="text-center text-muted">Footer</p>
-            </footer>
-        </div>
-    </div>
+    <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

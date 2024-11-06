@@ -41,6 +41,8 @@ public class PageRequestDTO {
   private LocalDate from;
   // 종료 기간
   private LocalDate to;
+  // 계정 ID
+  private String id;
 
   // LIMIT에서 사용할 값을 설정하는 메서드
   public int getSkip(){
