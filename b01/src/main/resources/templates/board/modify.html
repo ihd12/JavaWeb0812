@@ -13,34 +13,44 @@
                 <div class="card-body">
                     <form th:action="@{/board/modify}" method="post" id="f1">
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Bno</span>
+                        <span class="input-group-text">글번호</span>
                         <input type="text" class="form-control" name="bno" th:value="${dto.bno}" readonly>
                     </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">종류</span>
+                            <select class="form-select" name="subject">
+                                <option value="Java" th:selected="${dto.subject}=='Java'">Java</option>
+                                <option value="HCJ" th:selected="${dto.subject}=='HCJ'">HTML+CSS+JavaScript</option>
+                                <option value="JSP" th:selected="${dto.subject}=='JSP'">JSP</option>
+                                <option value="SF" th:selected="${dto.subject}=='SF'">Spring Frame</option>
+                                <option value="SB" th:selected="${dto.subject}=='SB'">Spring Boot</option>
+                            </select>
+                        </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Title</span>
+                        <span class="input-group-text">제목</span>
                         <input type="text" class="form-control" name="title" th:value="${dto.title}">
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Content</span>
+                        <span class="input-group-text">내용</span>
                         <textarea class="form-control col-sm-5" name="content" rows="5">[[${dto.content}]]</textarea>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Writer</span>
+                        <span class="input-group-text">작성자</span>
                         <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">RegDate</span>
+                        <span class="input-group-text">등록일</span>
                         <input type="text" class="form-control" th:value="${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm:ss')}" readonly>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">ModDate</span>
+                        <span class="input-group-text">수정일</span>
                         <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate,'yyyy-MM-dd HH:mm:ss')}" readonly>
                     </div>
                     <div class="my-4">
                         <div class="float-end">
-                            <button type="button" class="btn btn-primary listBtn">List</button>
-                            <button type="button" class="btn btn-secondary modBtn">Modify</button>
-                            <button type="button" class="btn btn-danger removeBtn">Remove</button>
+                            <button type="button" class="btn btn-primary listBtn">목록</button>
+                            <button type="button" class="btn btn-secondary modBtn">수정</button>
+                            <button type="button" class="btn btn-danger removeBtn">삭제</button>
                         </div>
                     </div>
                     </form>

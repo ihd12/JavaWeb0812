@@ -23,6 +23,7 @@ public class PageRequestDTO {
   // 화면에서 받을 데이터 : t,c,w,tc,tw,tcw
   private String type;
   private String keyword;
+  private String subject;
   private String link;
 
   public String[] getTypes(){
@@ -39,6 +40,9 @@ public class PageRequestDTO {
       StringBuilder builder = new StringBuilder();
       builder.append("page="+this.page);
       builder.append("&size="+this.size);
+      if(subject != null && subject.length()>0){
+        builder.append("&subject="+subject);
+      }
       if(type!=null && type.length()>0){
         builder.append("&type="+type);
       }

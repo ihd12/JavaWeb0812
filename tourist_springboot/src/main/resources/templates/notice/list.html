@@ -23,7 +23,7 @@
             <form action="/notice/list" class="minisrch_form">
                 <fieldset>
                     <legend>검색</legend>
-                    <input type="text" class="tbox" name="keyword" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
+                    <input type="text" class="tbox" name="keyword" th:value="${pageRequestDTO.keyword}" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
                     <button class="btn_srch">검색</button>
                     <a href="/notice/add" class="btn_srch">글작성</a>
                 </fieldset>
@@ -42,7 +42,7 @@
                 <tbody>
                 <tr th:each="notice:${pageResponseDTO.dtoList}">
                     <td>[[${notice.tno}]]</td>
-                    <td class="tit_notice"><a th:href="@{/notice/read(tno=${notice.tno})}">[[${notice.title}]]</a> </td>
+                    <td class="tit_notice"><a th:href="|@{/notice/read(tno=${notice.tno})}&${pageRequestDTO.link}|">[[${notice.title}]]</a> </td>
                     <td>[[${notice.view}]]</td>
 <!--                    <td>[[${notice.regDate}]]</td>-->
                     <td>[[${#temporals.format(notice.regDate,'yyyy-MM-dd HH:mm:ss')}]]</td>
@@ -82,7 +82,6 @@
         const num = target.getAttribute("data-num");
         const formObj = document.querySelector("form");
         formObj.innerHTML += `<input type="hidden" name="page" value="${num}">`;
-        // console.log(formObj.innerHTML);
         formObj.submit();
     },false)
 </script>

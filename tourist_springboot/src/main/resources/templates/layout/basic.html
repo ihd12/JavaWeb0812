@@ -32,11 +32,11 @@
             <!-- header_cont -->
             <div class="header_cont">
                 <ul class="util clear">
-                    <th:block th:if="${loginInfo==null}">
+                    <th:block th:if="${session.loginInfo==null}">
                         <li><a href="/member/login">로그인</a></li>
                         <li><a href="/member/join">회원가입</a></li>
                     </th:block>
-                    <th:block th:if="${loginInfo!=null}">
+                    <th:block th:if="${session.loginInfo!=null}">
                         <li><a href="/member/logout">로그아웃</a></li>
                         <li><a href="/member/mypage">회원수정</a></li>
                     </th:block>

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Simple Sidebar - Start Bootstrap Template</title>
+        <title>게시판</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -17,14 +17,14 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="sidebar-heading border-bottom bg-light">게시판</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/board/list">전체보기</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/board/list(subject='Java')}">Java</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/board/list(subject='HCJ')}">HTML+CSS+JavaScript</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/board/list(subject='JSP')}">JSP</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/board/list(subject='SF')}">Spring Framework</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/board/list(subject='SB')}">Spring Boot</a>
                 </div>
             </div>
             <!-- Page content wrapper-->
@@ -32,19 +32,28 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+                        <button class="btn btn-primary" id="sidebarToggle">메뉴 열기</button>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
+                                <th:block th:if="${session.loginInfo == null}">
+                                    <li class="nav-item active"><a class="nav-link" href="/member/login">로그인</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
+                                </th:block>
+                                <th:block th:if="${session.loginInfo != null}">
+                                    <li class="nav-item active"><a class="nav-link" href="/member/logout">로그아웃</a></li>
+                                    <li class="nav-item"><a class="nav-link removeBtn">회원탈퇴</a></li>
+                                </th:block>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#!">Action</a>
-                                        <a class="dropdown-item" href="#!">Another action</a>
+                                        <a class="dropdown-item" th:href="@{/board/list(subject='Java')}">Java</a>
+                                        <a class="dropdown-item" th:href="@{/board/list(subject='HCJ')}">HTML+CSS+JavaScript</a>
+                                        <a class="dropdown-item" th:href="@{/board/list(subject='JSP')}">JSP</a>
+                                        <a class="dropdown-item" th:href="@{/board/list(subject='SF')}">Spring Framework</a>
+                                        <a class="dropdown-item" th:href="@{/board/list(subject='SB')}">Spring Boot</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                        <a class="dropdown-item" href="/board/list">전체보기</a>
                                     </div>
                                 </li>
                             </ul>
@@ -64,5 +73,16 @@
         <th:block layout:fragment="script">
 
         </th:block>
+        <script>
+            document.querySelector(".removeBtn").addEventListener("click",(e)=>{
+                e.stopPropagation();
+                e.preventDefault();
+                let formObj = document.createElement("form");
+                formObj.action = "/member/remove";
+                formObj.method = "post";
+                document.body.appendChild(formObj);
+                formObj.submit();
+            })
+        </script>
     </body>
 </html>

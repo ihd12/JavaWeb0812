@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.zerock.b01.domain.Board;
+import org.zerock.b01.dto.BoardListReplyCountDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class BoardRespositoryTests {
     Optional<Board> result = boardRepository.findById(bno);
     Board board = result.orElseThrow();
     // 2. 변경되는 데이터를 데이터베이스에서 취득한 데이터에 적용
-    board.change("update..title", "update content 100");
+    board.change("update..title", "update content 100", "Java");
     // 3. 이미 존재하는 데이터의 경우 save실행 시 update문이 실행됨
     boardRepository.save(board);
   }
@@ -96,11 +97,24 @@ public class BoardRespositoryTests {
   }
   @Test
   public void testSearchAll(){
+    String subject = "Java";
     String [] types = {"t","c"};
     String keyword = "1";
     Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
-    Page<Board> result = boardRepository.searchAll(types,keyword,pageable);
+    Page<Board> result = boardRepository.searchAll(subject,types,keyword,pageable);
     log.info(result.getTotalElements());
+    log.info(result.getSize());
+    log.info(result.getNumber());
+    log.info(result.hasPrevious()+": " + result.hasNext());
+    result.getContent().forEach(board -> log.info(board));
+  }
+  @Test
+  public void testSearchReplyCount(){
+    String [] types = {"t","c","w"};
+    String keyword = "1";
+    Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
+    Page<BoardListReplyCountDTO> result = boardRepository.searchWithReplyCount(null,types,keyword,pageable);
+    log.info(result.getTotalPages());
     log.info(result.getSize());
     log.info(result.getNumber());
     log.info(result.hasPrevious()+": " + result.hasNext());

@@ -3,6 +3,8 @@ package org.zerock.b01.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 // 테이블을 만들기위한 자바 설정
 @Entity
 @Getter
@@ -16,13 +18,16 @@ public class Board extends BaseEntity{
   private Long bno;
   @Column(length=500, nullable=false)
   private String title;
-  @Column(length=2000, nullable=false)
+  @Column(columnDefinition = "TEXT", nullable=false)
   private String content;
   @Column(length=50, nullable=false)
   private String writer;
+  @Column(length=50, nullable=false)
+  private String subject;
 
-  public void change(String title, String content){
+  public void change(String title, String content,String subject){
     this.title = title;
     this.content = content;
+    this.subject = subject;
   }
 }

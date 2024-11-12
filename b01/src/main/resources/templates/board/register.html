@@ -8,26 +8,36 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Board Register
+                    게시글 등록하기
                 </div>
                 <div class="card-body">
                     <form action="/board/register" method="post">
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Title</span>
+                            <span class="input-group-text">제목</span>
                             <input type="text" name="title" class="form-control" placeholder="Title">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Content</span>
+                            <span class="input-group-text">종류</span>
+                            <select class="form-select" name="subject">
+                                <option value="Java" >Java</option>
+                                <option value="HCJ" >HTML+CSS+JavaScript</option>
+                                <option value="JSP" >JSP</option>
+                                <option value="SF" >Spring Frame</option>
+                                <option value="SB" >Spring Boot</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">내용</span>
                             <textarea class="form-control col-sm-5" rows="5" name="content"></textarea>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">writer</span>
-                            <input type="text" name="writer" class="form-control" placeholder="Writer">
+                            <span class="input-group-text">작성자</span>
+                            <input type="text" name="writer" class="form-control" th:value="${session.loginInfo.id}" readonly>
                         </div>
                         <div class="my-4">
                             <div class="float-end">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-primary">등록</button>
+                                <button type="reset" class="btn btn-secondary">초기화</button>
                             </div>
                         </div>
                     </form>
