@@ -73,7 +73,7 @@
         <th:block layout:fragment="script">
 
         </th:block>
-        <script>
+        <script th:if="${session.loginInfo != null}">
             document.querySelector(".removeBtn").addEventListener("click",(e)=>{
                 e.stopPropagation();
                 e.preventDefault();
