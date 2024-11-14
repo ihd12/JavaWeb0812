@@ -10,4 +10,6 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
   // JPQL에서는 테이블이나 열이름이 아닌 Entity의 이름을 사용하여야 합니다.
   @Query("SELECT r FROM Reply r WHERE r.board.bno = :bno")
   Page<Reply> listOfBoard(Long bno, Pageable pageable);
+
+  void deleteByBoard_bno(Long bno);
 }

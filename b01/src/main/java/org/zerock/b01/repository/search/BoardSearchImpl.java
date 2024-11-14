@@ -127,6 +127,26 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
     return new PageImpl<>(list,pageable,count);
   }
+
+  @Override
+  public Page<BoardListReplyCountDTO> searchWithAll(String subject, String[] types, String keyword, Pageable pageable) {
+    QBoard board = QBoard.board;
+    QReply reply = QReply.reply;
+    JPQLQuery<Board> boardJPQLQuery = from(board);
+    //left join : 댓글을 조회하기 위한 JOIN문 : 댓글은 단방향으로 설정했기 떄문에 board만 검색하면 댓글 데이터는 함께 조회하지 않습니다.
+    boardJPQLQuery.leftJoin(reply).on(reply.board.eq(board));
+    //페이징 설정
+    getQuerydsl().applyPagination(pageable, boardJPQLQuery);
+    //쿼리 실행
+    List<Board> boardList = boardJPQLQuery.fetch();
+    //조회한 데이터 출력
+    boardList.forEach(board1 ->{
+      System.out.println(board1.getBno());
+      System.out.println(board1.getImageSet());
+      System.out.println("-----------------------------");
+    });
+    return null;
+  }
 }
 
 

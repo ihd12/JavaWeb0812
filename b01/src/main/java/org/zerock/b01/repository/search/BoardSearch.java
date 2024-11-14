@@ -8,4 +8,5 @@ import org.zerock.b01.dto.BoardListReplyCountDTO;
 public interface BoardSearch {
   Page<Board> searchAll(String subject,String[] types, String keyword, Pageable pageable);
   Page<BoardListReplyCountDTO> searchWithReplyCount(String subject,String[] types, String keyword, Pageable pageable);
+  Page<BoardListReplyCountDTO> searchWithAll(String subject, String[] types, String keyword, Pageable pageable);
 }
