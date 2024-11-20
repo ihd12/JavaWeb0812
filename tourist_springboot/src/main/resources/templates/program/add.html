@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}">
+<div id="container" layout:fragment="content">
+    <!-- location_area -->
+    <div class="location_area customer">
+        <div class="box_inner">
+            <h2 class="tit_page">TOURIST <span class="in">in</span> TOUR</h2>
+            <p class="location">고객센터 <span class="path">/</span> 공지사항</p>
+            <ul class="page_menu clear">
+                <li><a href="#" class="on">공지사항</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- //location_area -->
+
+    <!-- bodytext_area -->
+    <div class="bodytext_area box_inner">
+        <form action="/program/add" method="POST">
+            <input type="hidden" name="img">
+            <ul class="bbsview_list">
+                <li class="bbs_title">제목 : <input type="text" name="title" size="110" placeholder="제목을 입력해주세요."></li>
+                <li class="bbs_title">설명 : <input type="text" name="text" size="110" placeholder="간단한 설명을 입력해주세요."></li>
+                <li class="bbs_title">추가설명 : <input type="text" name="subtext" size="110" placeholder="더보기 설명을 입력해주세요.">
+                </li>
+                <li class="bbs_title">기간 : <input type="text" name="schedule" size="110" placeholder="기간을 입력해주세요."></li>
+                <li class="bbs_title">이미지 : <input type="file" name="imgFile" class="fileBtn"></li>
+                <li><img id="prevImg" src=""></li>
+            </ul>
+            <p class="btn_line txt_right">
+                <input type="submit" value="등록" class="btn_srch submitBtn">
+                <a href="/program" class="btn_bbs">목록</a>
+            </p>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/upload.js"></script>
+    <!-- //bodytext_area -->
+</div>
+<!-- //container -->
+<script layout:fragment="script" th:inline="javascript">
+    let uuid = "";
+    let fileName = "";
+    // input type="file"의 파일데이터가 변경 되면 실행되는 이벤트
+    document.querySelector(".fileBtn").addEventListener("change", function (e) {
+        // 이전에 선택되어있던 이미지파일 삭제
+        removeFileToServer(uuid, fileName).catch(e => {
+            console.log(e);
+        });
+        // 파일을 저장할 form 생성
+        const formObj = new FormData();
+        // input 태그의 name 속성이 files인 태그를 선택
+        const fileInput = document.querySelector("input[name='imgFile']");
+        // input태그의 type이 file일 경우 파일데이터만 저장
+        const files = fileInput.files;
+        // formObj에 모든 파일 데이터를 추가
+        for (let i = 0; i < files.length; i++) {
+            formObj.append("files", files[i]);
+        }
+        // axios 파일 저장 함수 실행
+        uploadToServer(formObj).then(result => {
+            // 저장한 파일 이름을 변수로 저장하여 삭제시에 사용
+            uuid = result[0].uuid;
+            fileName = result[0].fileName;
+            // img태그의 src를 변경하여 미리보기 이미지 출력
+            let prevImg = document.querySelector("#prevImg");
+            prevImg.src = `/view/${uuid}_${fileName}`;
+            // 등록시 서버에 전송할 파일 이름 설정
+            let img = document.querySelector("input[name='img']");
+            img.value = `${uuid}_${fileName}`;
+        }).catch(e => {
+            console.log(e);
+        })
+    }, false);
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/basic.html}">
+
+	<div layout:fragment="content" id="container">
+		<!-- location_area -->
+		<div class="location_area package">
+			<div class="box_inner">
+				<h2 class="tit_page">TOURIST <span class="in">in</span> TOUR</h2>
+				<p class="location">상품투어 <span class="path">/</span> 프로그램 소개</p>
+				<ul class="page_menu clear">
+					<li><a href="javascript:;" class="on">프로그램 소개</a></li>
+					<li><a href="javascript:;">여행 자료</a></li>
+				</ul>
+			</div>
+		</div>	
+		<!-- //location_area -->
+
+		<!-- bodytext_area -->
+
+		<div class="bodytext_area place_area box_inner">
+			<p><a class="btn_srch" href="/program/add">추가</a></p>
+			<br>
+			<ul class="program_list clear">
+				<th:block th:each="dto:${dtoList}">
+					<li>
+						<img class="img_place" th:src="|/view/${dto.img}|" th:alt="${dto.title}" />
+						<h3>[[${dto.title}]]</h3>
+						<p class="subttl">[[${dto.schedule}]]</p>
+						<div class="program_content">
+							<p>[[${dto.text}]] <span class="subtxt">[[${dto.subtext}]]</span></p>
+						</div>
+						<p class="btn_more">
+							<a href="javascript:;">더보기</a>
+<!--							<a th:href="@{/cookie(title=${dto.title})}">저장</a>-->
+						</p>
+					</li>
+				</th:block>
+			</ul>
+		</div>
+		<!-- //bodytext_area -->
+
+	</div>
+	<!-- //container -->
+
+<script layout:fragment="script" th:inline="javascript">
+
+</script>
+</html>

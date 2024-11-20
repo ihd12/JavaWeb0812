@@ -10,10 +10,10 @@ import org.zerock.tourist_springboot.config.BaseEntity;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class program extends BaseEntity {
+public class Program extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int no;
+  private Long no;
   @Column(length=200,nullable = false)
   private String title;
   @Column(length=300)

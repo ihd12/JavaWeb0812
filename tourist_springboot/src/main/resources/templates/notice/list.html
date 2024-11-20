@@ -42,7 +42,14 @@
                 <tbody>
                 <tr th:each="notice:${pageResponseDTO.dtoList}">
                     <td>[[${notice.tno}]]</td>
-                    <td class="tit_notice"><a th:href="|@{/notice/read(tno=${notice.tno})}&${pageRequestDTO.link}|">[[${notice.title}]]</a> </td>
+                    <td class="tit_notice">
+                        <a th:href="|@{/notice/read(tno=${notice.tno})}&${pageRequestDTO.link}|">
+                            [[${notice.title}]]
+                            <span style="color:blue;">
+                                    ([[${notice.replyCount}]])
+                            </span>
+                        </a>
+                    </td>
                     <td>[[${notice.view}]]</td>
 <!--                    <td>[[${notice.regDate}]]</td>-->
                     <td>[[${#temporals.format(notice.regDate,'yyyy-MM-dd HH:mm:ss')}]]</td>
