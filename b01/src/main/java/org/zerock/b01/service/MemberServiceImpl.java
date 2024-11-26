@@ -3,30 +3,30 @@ package org.zerock.b01.service;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.zerock.b01.domain.Member;
+import org.zerock.b01.domain.Member2;
 import org.zerock.b01.dto.MemberDTO;
-import org.zerock.b01.repository.MemberRepository;
+import org.zerock.b01.repository.Member2Repository;
 
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
-  private final MemberRepository memberRepository;
+  private final Member2Repository member2Repository;
   private final ModelMapper modelMapper;
 
   @Override
   public MemberDTO login(MemberDTO dto) {
-    Member result = memberRepository.findById(dto.getId()).orElseThrow();
+    Member2 result = member2Repository.findById(dto.getId()).orElseThrow();
     return modelMapper.map(result, MemberDTO.class);
   }
 
   @Override
   public void join(MemberDTO dto) {
-    Member member = modelMapper.map(dto, Member.class);
-    memberRepository.save(member);
+    Member2 member2 = modelMapper.map(dto, Member2.class);
+    member2Repository.save(member2);
   }
 
   @Override
   public void remove(MemberDTO dto) {
-    memberRepository.deleteById(dto.getId());
+    member2Repository.deleteById(dto.getId());
   }
 }

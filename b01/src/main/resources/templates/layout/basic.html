@@ -36,14 +36,14 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <th:block th:if="${session.loginInfo == null}">
-                                    <li class="nav-item active"><a class="nav-link" href="/member/login">로그인</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a></li>
-                                </th:block>
-                                <th:block th:if="${session.loginInfo != null}">
-                                    <li class="nav-item active"><a class="nav-link" href="/member/logout">로그아웃</a></li>
-                                    <li class="nav-item"><a class="nav-link removeBtn">회원탈퇴</a></li>
-                                </th:block>
+<!--                                <th:block th:if="${session.loginInfo == null}">-->
+<!--                                    <li class="nav-item active"><a class="nav-link" href="/member2/login">로그인</a></li>-->
+<!--                                    <li class="nav-item"><a class="nav-link" href="/member2/join">회원가입</a></li>-->
+<!--                                </th:block>-->
+<!--                                <th:block th:if="${session.loginInfo != null}">-->
+<!--                                    <li class="nav-item active"><a class="nav-link" href="/member2/logout">로그아웃</a></li>-->
+<!--                                    <li class="nav-item"><a class="nav-link removeBtn">회원탈퇴</a></li>-->
+<!--                                </th:block>-->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -78,7 +78,7 @@
                 e.stopPropagation();
                 e.preventDefault();
                 let formObj = document.createElement("form");
-                formObj.action = "/member/remove";
+                formObj.action = "/member2/remove";
                 formObj.method = "post";
                 document.body.appendChild(formObj);
                 formObj.submit();

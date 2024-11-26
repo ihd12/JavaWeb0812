@@ -32,7 +32,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text">작성자</span>
-                            <input type="text" name="writer" class="form-control" th:value="${session.loginInfo.id}" readonly>
+                            <input type="text" name="writer" class="form-control" th:value="${#authentication.principal.username}" readonly>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text">이미지</span>
@@ -172,6 +172,8 @@
         target.innerHTML = str;
         document.querySelector("form").submit();
     },false);
+
+
 </script>
 </html>
 

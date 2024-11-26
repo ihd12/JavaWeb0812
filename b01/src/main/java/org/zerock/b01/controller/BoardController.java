@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,11 +37,18 @@ public class BoardController {
     PageResponseDTO<BoardListAllDTO> pageResponseDTO = boardService.listWithAll(pageRequestDTO);
     model.addAttribute("responseDTO", pageResponseDTO);
   }
+  // 로그인한 사용자에게 ROLE_USER권한이 있을때 실행 가능
+//  @PreAuthorize("isAuthenticated()") 권한에 상관 없이 로그인한 유저는 모두 허용
+//  @PreAuthorize("permitAll()") 모두 허용
+//  @PreAuthorize("isAnonymous()") 로그인하지 않은 사용자도 허용
+  @PreAuthorize("hasRole('USER')") //USER권한이 있는 사용자를 허용
+//  @PreAuthorize("hasRole('ADMIN')") ADMIN권한 있는 사용자를 허용
+//  @PreAuthorize("hasAnyRole('USER','ADMIN')") 둘중 하나의 권한만 있으면 허용
   @GetMapping("/register")
   public String registerGet(HttpSession session){
-    if(session.getAttribute("loginInfo") == null){
-      return "redirect:/member/login";
-    }
+//    if(session.getAttribute("loginInfo") == null){
+//      return "redirect:/member/login";
+//    }
     return "board/register";
 
   }
@@ -58,11 +66,14 @@ public class BoardController {
     redirectAttributes.addFlashAttribute("result", bno);
     return "redirect:/board/list";
   }
+//  권한에 상관 없이 로그인한 유저는 모두 허용
+  @PreAuthorize("isAuthenticated()")
   @GetMapping({"/read","/modify"})
   public void read(Long bno,PageRequestDTO pageRequestDTO, Model model){
     BoardDTO dto = boardService.readOne(bno);
     model.addAttribute("dto",dto);
   }
+  @PreAuthorize("principal.username == #boardDTO.writer")
   @PostMapping("/modify")
   public String modify(PageRequestDTO pageRequestDTO,
                      @Valid BoardDTO boardDTO,
@@ -79,6 +90,7 @@ public class BoardController {
     redirectAttributes.addAttribute("bno", boardDTO.getBno());
     return "redirect:/board/read";
   }
+  @PreAuthorize("principal.username == #boardDTO.writer")
   @PostMapping("/remove")
   public String remove(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
     // Board관련된 데이터베이스 데이터 삭제
