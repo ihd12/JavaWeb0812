@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.b01.dto.MemberDTO;
+import org.zerock.b01.dto.MemberJoinDTO;
+import org.zerock.b01.service.Member2Service;
 import org.zerock.b01.service.MemberService;
 
 @Log4j2
@@ -18,10 +21,22 @@ public class MemberController {
   private final MemberService memberService;
 
   @GetMapping("/join")
-  public void join() {}
+  public void joinGET() {
+    log.info("join get ...");
+  }
   @PostMapping("/join")
-  public String join(MemberDTO dto){
-    memberService.join(dto);
+  public String joinPOST(MemberJoinDTO memberJoinDTO, RedirectAttributes redirectAttributes){
+    log.info("join post ...");
+    log.info(memberJoinDTO);
+    try{
+      memberService.join(memberJoinDTO);
+    }catch(MemberService.MidExistException e){
+      // mid가 이미 존재한다면 회원가입 페이지로 리다이렉트 실행
+      redirectAttributes.addFlashAttribute("error","mid");
+      return "redirect:/member/join";
+    }
+    // mid가 없다면 데이터베이스에 데이터 저장 후 게시글 목록 페이지로 리다이렉트 실행
+    redirectAttributes.addFlashAttribute("result","success");
     return "redirect:/board/list";
   }
 
@@ -53,13 +68,13 @@ public class MemberController {
 //    return "redirect:/board/list";
 //  }
 
-  @PostMapping("/remove")
-  public String remove(HttpSession session){
-    MemberDTO loginInfo = (MemberDTO)session.getAttribute("loginInfo");
-    memberService.remove(loginInfo);
-    session.removeAttribute("loginInfo");
-    session.invalidate();
-    return "redirect:/board/list";
-  }
+//  @PostMapping("/remove")
+//  public String remove(HttpSession session){
+//    MemberDTO loginInfo = (MemberDTO)session.getAttribute("loginInfo");
+//    memberService.remove(loginInfo);
+//    session.removeAttribute("loginInfo");
+//    session.invalidate();
+//    return "redirect:/board/list";
+//  }
 
 }

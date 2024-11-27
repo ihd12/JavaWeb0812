@@ -3,33 +3,35 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/basic.html}">
+<head>
+    <title>Member Join Page</title>
+</head>
 <div layout:fragment="content">
     <div class="row mt-3">
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    회원 가입
+                    JOIN
                 </div>
+
                 <div class="card-body">
-                    <form action="/member2/join" method="post">
+                    <form id="registerForm" action="/member/join" method="post">
                         <div class="input-group mb-3">
-                            <span class="input-group-text">ID</span>
-                            <input type="text" name="id" class="form-control" placeholder="id">
+                            <span class="input-group-text">MID</span>
+                            <input type="text" name="mid" class="form-control">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">PASSWORD</span>
-                            <input type="text" name="pw" class="form-control" placeholder="pw">
+                            <span class="input-group-text">MPW</span>
+                            <input type="text" name="mpw" class="form-control">
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text">EMAIL</span>
-                            <input type="text" name="email1" class="form-control">
-                            @
-                            <input type="text" name="email2" class="form-control">
+                            <input type="text" name="email" class="form-control">
                         </div>
                         <div class="my-4">
                             <div class="float-end">
-                                <button type="submit" class="btn btn-primary">가입</button>
-                                <button type="reset" class="btn btn-secondary">초기화</button>
+                                <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                         </div>
                     </form>
@@ -39,26 +41,9 @@
     </div>
 </div>
 <script layout:fragment="script" th:inline="javascript">
-    const errors = [[${errors}]]
-    console.log(errors);
-    let errorMsg = '';
-    if(errors){
-        for(let i=0; i<errors.length; i++){
-            errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`
-        }
-        alert(errorMsg);
+    const error = [[${error}]];
+    if(error && error === 'mid'){
+        alert("동일한 MID를 가진 계정이 존재합니다.")
     }
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

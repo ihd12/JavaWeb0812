@@ -109,9 +109,9 @@
 </div>
 
 <script layout:fragment="script" th:inline="javascript">
-    const result = [[${result}]]
+    const result = [[${result}]];
     const modal = new bootstrap.Modal(document.querySelector(".modal"));
-    if(result){
+    if(result && result !== 'success'){
         modal.show();
     }
 

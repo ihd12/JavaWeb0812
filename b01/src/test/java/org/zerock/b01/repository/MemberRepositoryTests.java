@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.Commit;
 import org.zerock.b01.domain.Member;
 import org.zerock.b01.domain.MemberRole;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -34,7 +36,22 @@ public class MemberRepositoryTests {
       memberRepository.save(member);
     });
   }
-  
+  @Test
+  public void testRead(){
+    Optional<Member> result = memberRepository.getWithRoles("member100");
+    Member member = result.orElseThrow();
+    log.info(member);
+    log.info(member.getRoleSet());
+    member.getRoleSet().forEach(memberRole -> log.info(memberRole.name()));
+  }
+  @Commit
+  @Test
+  public void testUpdate(){
+    String mid = "HyeDong";
+    String mpw = passwordEncoder.encode("54321");
+    memberRepository.updatePassword(mpw,mid);
+  }
+
 }
 
 
