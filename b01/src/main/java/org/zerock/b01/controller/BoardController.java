@@ -20,6 +20,7 @@ import org.zerock.b01.service.BoardService;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -45,7 +46,8 @@ public class BoardController {
 //  @PreAuthorize("hasRole('ADMIN')") ADMIN권한 있는 사용자를 허용
 //  @PreAuthorize("hasAnyRole('USER','ADMIN')") 둘중 하나의 권한만 있으면 허용
   @GetMapping("/register")
-  public String registerGet(HttpSession session){
+  public String registerGet(Principal principal,HttpSession session){
+    System.out.println(principal.getName());
 //    if(session.getAttribute("loginInfo") == null){
 //      return "redirect:/member/login";
 //    }
@@ -53,9 +55,11 @@ public class BoardController {
 
   }
   @PostMapping("/register")
-  public String registerPost(@Valid BoardDTO boardDTO,
+  public String registerPost(
+      @Valid BoardDTO boardDTO,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes){
+
     if(bindingResult.hasErrors()){
       log.info("has errors...............");
       redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
