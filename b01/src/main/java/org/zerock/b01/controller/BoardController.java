@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.b01.dto.*;
+import org.zerock.b01.security.dto.MemberSecurityDTO;
 import org.zerock.b01.service.BoardService;
 
 import java.io.File;
@@ -47,6 +51,8 @@ public class BoardController {
 //  @PreAuthorize("hasAnyRole('USER','ADMIN')") 둘중 하나의 권한만 있으면 허용
   @GetMapping("/register")
   public String registerGet(Principal principal,HttpSession session){
+
+
     System.out.println(principal.getName());
 //    if(session.getAttribute("loginInfo") == null){
 //      return "redirect:/member/login";
@@ -77,9 +83,9 @@ public class BoardController {
     BoardDTO dto = boardService.readOne(bno);
     model.addAttribute("dto",dto);
   }
-  @PreAuthorize("principal.username == #boardDTO.writer")
+//  @PreAuthorize("principal.username == #boardDTO.writer")
   @PostMapping("/modify")
-  public String modify(PageRequestDTO pageRequestDTO,
+  public String modify(Principal principal,PageRequestDTO pageRequestDTO,
                      @Valid BoardDTO boardDTO,
                      BindingResult bindingResult,
                      RedirectAttributes redirectAttributes){
@@ -89,10 +95,18 @@ public class BoardController {
       redirectAttributes.addAttribute("bno", boardDTO.getBno());
       return "redirect:/board/modify?"+link;
     }
-    boardService.modify(boardDTO);
-    redirectAttributes.addFlashAttribute("result", "modified");
-    redirectAttributes.addAttribute("bno", boardDTO.getBno());
-    return "redirect:/board/read";
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    MemberSecurityDTO memberSecurityDTO = (MemberSecurityDTO) auth.getPrincipal();
+    if(auth !=null
+        && (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))
+        || memberSecurityDTO.getMid().equals(boardDTO.getWriter()))){
+      boardService.modify(boardDTO);
+      redirectAttributes.addFlashAttribute("result", "modified");
+      redirectAttributes.addAttribute("bno", boardDTO.getBno());
+      return "redirect:/board/read";
+    }
+    return "redirect:/board/read?error=작성자가 아닙니다.";
   }
   @PreAuthorize("principal.username == #boardDTO.writer")
   @PostMapping("/remove")

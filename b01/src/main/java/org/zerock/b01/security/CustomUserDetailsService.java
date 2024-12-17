@@ -34,33 +34,33 @@ public class CustomUserDetailsService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    UserDetails userDetails = User.builder()
-        .username("user1")
-        .password(passwordEncoder.encode("1111"))
-        .authorities("ROLE_USER","ROLE_ADMIN")
-        .build();
-    return userDetails;
+//    UserDetails userDetails = User.builder()
+//        .username("user1")
+//        .password(passwordEncoder.encode("1111"))
+//        .authorities("ROLE_USER","ROLE_ADMIN")
+//        .build();
+//    return userDetails;
 
-//    log.info("loadUserByUsername : " + username);
-    // username을 이용하여 사용자 정보를 취득
-//    Optional<Member> result = memberRepository.getWithRoles(username);
-//    // 사용자의 정보가 데이터베이스에 없으면 UsernameNotFoundException 예외를 발생시킴
-//    if(result.isEmpty()){
-//      throw new UsernameNotFoundException(username);
-//    }
-//    // 사용자가 있을 경우 MemberSecurityDTO 생성하고 반환
-//    Member member = result.get();
-    // 6번째 인수인 권한 설정을 반드시 해야합니다.
-//    MemberSecurityDTO memberSecurityDTO =
-//        new MemberSecurityDTO(member.getMid(), member.getMpw(), member.getEmail(),member.isDel(),false, member.getRoleSet().stream()
-//            .map(memberRole -> new SimpleGrantedAuthority("ROLE_"+memberRole.name()))
-//            .collect(Collectors.toList())
-//        );
+    log.info("loadUserByUsername : " + username);
+//     username을 이용하여 사용자 정보를 취득
+    Optional<Member> result = memberRepository.getWithRoles(username);
+    // 사용자의 정보가 데이터베이스에 없으면 UsernameNotFoundException 예외를 발생시킴
+    if(result.isEmpty()){
+      throw new UsernameNotFoundException(username);
+    }
+    // 사용자가 있을 경우 MemberSecurityDTO 생성하고 반환
+    Member member = result.get();
+//     6번째 인수인 권한 설정을 반드시 해야합니다.
+    MemberSecurityDTO memberSecurityDTO =
+        new MemberSecurityDTO(member.getMid(), member.getMpw(), member.getEmail(),member.isDel(),false, member.getRoleSet().stream()
+            .map(memberRole -> new SimpleGrantedAuthority("ROLE_"+memberRole.name()))
+            .collect(Collectors.toList())
+        );
 
-//    log.info("memberSecurityDTO");
-//    log.info(memberSecurityDTO);
-//
-//    return memberSecurityDTO;
+    log.info("memberSecurityDTO");
+    log.info(memberSecurityDTO);
+
+    return memberSecurityDTO;
 
   }
 }

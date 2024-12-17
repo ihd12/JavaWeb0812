@@ -40,6 +40,13 @@ public class MemberServiceImpl implements MemberService{
     // 데이터베이스 사용자 저장
     memberRepository.save(member);
   }
+
+  @Override
+  public boolean midCheck(String mid) {
+    return memberRepository.existsById(mid);
+  }
+
+
 }
 
 
