@@ -6,15 +6,16 @@
 </head>
 <body>
     <h1>Sample Client</h1>
-    <button class="btn1">generateToken</button>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    document.querySelector(".btn1").addEventListener("click", ()=>{
-        const data = {mid:"apiuser10", mpw:"1111"};
-        const response = axios.post("http://localhost:8080/generateToken", data);
-        console.log(response);
-    },false)
 
+    async function callTest(){
+        const response = await axios.get("http://localhost:8080/api/sample/doA");
+        return response.data;
+    }
+    callTest()
+        .then(data=>console.log(data))
+        .catch(e=>console.log(e));
 
 </script>
 </body>

@@ -20,7 +20,7 @@ public class JWTUtilTests {
   }
   @Test
   public void validateToken(){
-    String jwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJBQkNERSIsImlhdCI6MTczNzQ1MDcxMywiZXhwIjoxNzM3NDUwODkzfQ.nefdc8vfE3nbNuU_2ao_DYUtbXzDQ0lZmPZ-nBuQKas";
+    String jwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJBQkNERSIsImlhdCI6MTczNzUwNTQxNywiZXhwIjoxNzM3NTA1NTk3fQ.u3IUW2YdXAz6yJvY-HpaDANO9LK6Xj7NYmmbHfQltsQ";
     Map<String,Object> claimMap = jwtUtil.validateToken(jwtToken);
     log.info(claimMap);
   }

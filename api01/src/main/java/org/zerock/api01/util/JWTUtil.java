@@ -2,17 +2,12 @@ package org.zerock.api01.util;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.sql.Struct;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +28,7 @@ public class JWTUtil {
     Map<String,Object> payloads = new HashMap<>();
     payloads.putAll(valueMap);
     //만료시간 설정
-    int time = (3)*days;
+    int time = (1)*days;
     // JWT를 생성
 //    String jwtStr = Jwts.builder()
 //        .setHeader(headers)
@@ -54,17 +49,18 @@ public class JWTUtil {
   }
   public Map<String, Object> validateToken(String token) throws JwtException {
     Map<String,Object> claim = null;
+    // 0.12.6 버전
     SecretKey secretKey = Keys.hmacShaKeyFor(key.getBytes());
-//    0.9.1 버전
-//    claim = Jwts.parser()
-//        .setSigningKey(key)
-//        .parseClaimsJws(token)
-//        .getBody();
     claim = Jwts.parser()
         .verifyWith(secretKey)
         .build()
         .parseSignedClaims(token)
         .getPayload();
+    //    0.9.1 버전
+//    claim = Jwts.parser()
+//        .setSigningKey(key)
+//        .parseClaimsJws(token)
+//        .getBody();
     return claim;
   }
 }

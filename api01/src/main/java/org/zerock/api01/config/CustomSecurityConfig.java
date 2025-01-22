@@ -16,9 +16,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.zerock.api01.security.APIUserDetailService;
 import org.zerock.api01.security.filter.APILoginFilter;
+import org.zerock.api01.security.filter.RefreshTokenFilter;
+import org.zerock.api01.security.filter.TokenCheckFilter;
 import org.zerock.api01.security.handler.APILoginSuccessHandler;
+import org.zerock.api01.util.JWTUtil;
+
+import java.util.Arrays;
 
 @Configuration
 @Log4j2
@@ -27,7 +35,7 @@ import org.zerock.api01.security.handler.APILoginSuccessHandler;
 @RequiredArgsConstructor
 public class CustomSecurityConfig {
   private final APIUserDetailService apiUserDetailService;
-
+  private final JWTUtil jwtUtil;
   @Bean
   //비밀번호 암호화 설정
   public PasswordEncoder passwordEncoder() {
@@ -58,18 +66,39 @@ public class CustomSecurityConfig {
     // apiLoginFilter에 권한 매니저 설정
     apiLoginFilter.setAuthenticationManager(authenticationManager);
     // 로그인 성공시 실행할 핸들러 설정
-    APILoginSuccessHandler successHandler = new APILoginSuccessHandler();
+    APILoginSuccessHandler successHandler = new APILoginSuccessHandler(jwtUtil);
     apiLoginFilter.setAuthenticationSuccessHandler(successHandler);
     // http에 필터 설정, 유저 이름이나 패스워드 권한 관련 필터 전에 실행되도록 설정
     http.addFilterBefore(apiLoginFilter, UsernamePasswordAuthenticationFilter.class);
 
+    http.addFilterBefore(tokenCheckFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
+    //refreshTokenFilter 설정
+    http.addFilterBefore(new RefreshTokenFilter("/refreshToken", jwtUtil), TokenCheckFilter.class);
 
     //csrf설정 비활성화
     http.csrf().disable();
     //session 비활성화 : jsessionid가 생성되지 않음
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+    http.cors(httpSecurityCorsConfigurer ->
+        httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource()));
+
     return http.build();
+  }
+  private TokenCheckFilter tokenCheckFilter(JWTUtil jwtUtil) {
+    return new TokenCheckFilter(jwtUtil);
+  }
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource(){
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+    configuration.setAllowedMethods(Arrays.asList("HEAD","GET", "POST", "PUT", "DELETE"));
+    configuration.setAllowedHeaders(Arrays.asList("Authorization","Cache-Control","Content-Type"));
+    configuration.setAllowCredentials(true);
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("**",configuration);
+    return source;
   }
 }
 
