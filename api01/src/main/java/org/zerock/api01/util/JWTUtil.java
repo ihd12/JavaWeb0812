@@ -28,7 +28,7 @@ public class JWTUtil {
     Map<String,Object> payloads = new HashMap<>();
     payloads.putAll(valueMap);
     //만료시간 설정
-    int time = (1)*days;
+    int time = (60*24)*days;
     // JWT를 생성
 //    String jwtStr = Jwts.builder()
 //        .setHeader(headers)
