@@ -3,14 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Todo List</title>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
         <%--        <h1>Header</h1>--%>
-        <%@ include file="/WEB-INF/views/layout/header.jsp"%>
+        <%@ include file="/WEB-INF/views/layout/header.jsp" %>
         <div class="row content">
             <div class="col">
                 <div class="card">
@@ -22,9 +23,12 @@
                                 <input type="checkbox" name="finished" ${pageRequestDTO.finished ? "checked": ""}>완료여부
                             </div>
                             <div class="mb-3">
-                                <input type="checkbox" name="types" value="t" ${pageRequestDTO.checkType("t") ? "checked":""}>제목
-                                <input type="checkbox" name="types" value="w" ${pageRequestDTO.checkType("w") ? "checked":""}>작성자
-                                <input type="text" name="keyword" class="form-control" value="${pageRequestDTO.keyword}">
+                                <input type="checkbox" name="types"
+                                       value="t" ${pageRequestDTO.checkType("t") ? "checked":""}>제목
+                                <input type="checkbox" name="types"
+                                       value="w" ${pageRequestDTO.checkType("w") ? "checked":""}>작성자
+                                <input type="text" name="keyword" class="form-control"
+                                       value="${pageRequestDTO.keyword}">
                             </div>
                             <div class="input-group mb-3 dueDateDiv">
                                 <input type="date" name="from" class="form-control" value="${pageRequestDTO.from}">
@@ -67,8 +71,8 @@
                                     <th scope="row"><c:out value="${dto.tno}"/></th>
                                     <td>
                                         <a href="/todo/read?tno=${dto.tno}&${pageRequestDTO.link}"
-                                            class="text-decoration-none" data-tno="${dto.tno}">
-                                        <c:out value="${dto.title}"/></a>
+                                           class="text-decoration-none" data-tno="${dto.tno}">
+                                            <c:out value="${dto.title}"/></a>
                                     </td>
                                     <td><c:out value="${dto.writer}"/></td>
                                     <td><c:out value="${dto.dueDate}"/></td>
@@ -97,12 +101,12 @@
                             </ul>
                         </div>
                         <script>
-                            document.querySelector(".pagination").addEventListener("click", function(event){
+                            document.querySelector(".pagination").addEventListener("click", function (event) {
                                 event.preventDefault();
                                 event.stopPropagation();
                                 // 클릭한 태크를 취득
                                 const target = event.target;
-                                if(target.tagName !== 'A'){
+                                if (target.tagName !== 'A') {
                                     return;
                                 }
                                 // target의 a태그에 저장되어 있는 data-num인 page정보를 취득
@@ -113,9 +117,9 @@
                                 formObj.innerHTML += `<input type="hidden" name="page" value="\${num}">`
                                 // form 태그 실행
                                 formObj.submit();
-                            },false)
+                            }, false)
                             // 클리어 버튼을 누르면 제일 첫번째 페이지로 이동하는 이벤트
-                            document.querySelector(".clearBtn").addEventListener("click", function(e){
+                            document.querySelector(".clearBtn").addEventListener("click", function (e) {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 self.location = `/todo/list`;
@@ -129,8 +133,10 @@
     <div class="row content">
         <h1>Content</h1>
     </div>
-    <%@ include file="/WEB-INF/views/layout/footer.jsp"%>
+    <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 </html>
