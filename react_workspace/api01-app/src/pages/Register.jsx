@@ -26,15 +26,37 @@ const Register = () =>{
     };
   }
   return(
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <p><input ref={titleRef} type="text" placeholder="제목 입력" /></p>
-        <p><input ref={dateRef} type="date" /></p>
-        <p><input ref={writerRef} type="text" placeholder="작성자 입력" /></p>
-        <button type="submit">등록</button>
-      </form>
-    </div>
+    <div className="row content">
+          <div className="col">
+              <div className="card">
+                  <div className="card-header">
+                      Featured
+                  </div>
+                  <div className="card-body">
+                      <form onSubmit={handleSubmit}>
+                          <div className="input-group mb-3">
+                              <span className="input-group-text">Title</span>
+                              <input type="text" ref={titleRef} name="title" className="form-control" placeholder="Title" />
+                          </div>
+                          <div className="input-group mb-3">
+                              <span className="input-group-text">DueDate</span>
+                              <input type="date" ref={dateRef} name="dueDate" className="form-control" />
+                          </div>
+                          <div className="input-group mb-3">
+                              <span className="input-group-text">Writer</span>
+                              <input type="text" ref={writerRef} name="writer" className="form-control" />
+                          </div>
+                          <div className="my-4">
+                              <div className="float-end">
+                                  <button type="submit" className="btn btn-primary">등록</button>
+                                  <button type="reset" className="btn btn-secondary">초기화</button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
   );
 }
 export default Register;
